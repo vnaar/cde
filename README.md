@@ -1,4 +1,4 @@
 cde 3
 ===
 
-cde 
+cde simple static func
