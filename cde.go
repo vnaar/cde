@@ -66,6 +66,6 @@ func (cdeimg *CDEimg) GetImgHttp(path string) string {
 	if path == "" {
 		path = cdeimg.Path
 	}
-	return "http://" + cdeimg.Pre + cdeimg.Domain + path //$path以/开头
+	return "http://" + cdeimg.Pre + "0" + cdeimg.Domain + path //$path以/开头
 
 }
