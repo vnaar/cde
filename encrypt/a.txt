@@ -1,0 +1,13 @@
+
+
+---------------------------
+kkkkkkkkkkkkk	UPPkkHBkkYkkkkkkkQkNWEk	  ||复制箭头后面的内容->  删除所有大写字母	kkHBkkYkkkkkkkQkNWEk
+--- SUCCESS --- 	
+
+---------------------------
+kkkkkkkkkkkkk	SPEk+k>#\kkkk!k,k\kkk+kk	  ||复制箭头后面的内容->  删除所有特殊字符	k+k>#\kkkk!k,k\kkk+kk
+--- SUCCESS --- 	
+
+---------------------------
+kkkkkkkkkkkkk	HANkkk摄席k唱kk汲k巾k腺k博kkkk	  ||复制箭头后面的内容->  删除所有汉字	kkk摄席k唱kk汲k巾k腺k博kkkk
+--- SUCCESS --- 	
