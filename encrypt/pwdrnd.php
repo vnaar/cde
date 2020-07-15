@@ -21,6 +21,7 @@ namespace cdetoolclient;
 
 if(count($argv)==2&&isset($argv['1'])&&trim($argv['1'])!=''){
 		$origin=trim($argv['1']);
+		
 	}else {
 		if($argc<=1){
 			exit('1001: need an argument');
@@ -39,8 +40,9 @@ for($i=0;$i<3;$i++){
 }
 exit('');
 //==================================
-
-
+//==================================
+//==================================
+//==================================
 
 Class PwdRand{
 	private $dic=array(
@@ -56,6 +58,19 @@ Class PwdRand{
 	
 	public function GetPwdRnd($origin=''){
 		if(empty($origin)){exit('');}
+		$mblen=mb_strlen($origin,'utf8');
+		if($mblen<3){exit('str is too short !');}
+		$numlen=0;
+		$originright='';//追加
+		if(rand(1,10)>5){
+			$numlen=rand(0,3);//个数
+			if($numlen>0){
+				$tmp=$origin;// tmp
+				$origin=mb_substr($tmp,0,$mblen-$numlen);			
+				$originright=mb_substr($tmp,$mblen-$numlen);
+			}
+		}		
+		$numlen=0;
 		//准备字段
 		$dic=$this->dic;
 		//1、获取参数
@@ -69,7 +84,7 @@ Class PwdRand{
 		$tmpstr='';//插入的值
 		$dotype='';
 		$replacestr='';
-		$numlen=0;
+		
 		if(count($newgr)>0){
 			$dotype='NUL';
 			$replacestr='未知';
@@ -120,7 +135,7 @@ Class PwdRand{
 			}
 			
 			//output
-			$this->showOuputStr($dotype,$origin,$newstr,$replacestr);
+			$this->showOuputStr($dotype,$origin.$originright,$newstr,$replacestr.($originright?' 追加 '.$originright:''));
 			
 		}else if($this->blockcontinuous==1){
 			$dotype='CON';//连续字符串
@@ -149,8 +164,11 @@ Class PwdRand{
 				$newstr=mb_substr($origin,0,$numlen).$tmpstr.mb_substr($origin,$numlen);
 				
 			}			
+			
+			// 
+			$replacestr=$replacestr.$tmpstr.($originright?' 追加 '.$originright:'');//		
 			//output
-			$this->showOuputStr($dotype,$origin,$newstr,$replacestr.$tmpstr);
+			$this->showOuputStr($dotype,$origin.$originright,$newstr,$replacestr);
 			
 		}else{
 			exit('9000 str is too strong !');
