@@ -114,18 +114,15 @@ Class PwdRand{
 			}
 			
 			if($tmpstr!=''){
-				$newstr=$this->insertShunxu($origin,$tmpstr);
-				
-				
-			}else{
-				var_dump($numlen,$newgr,$newgr[$numlen]);
+				$newstr=$this->insertShunxu($origin,$tmpstr);				
+			}else{				
 				exit('9002 str is too strong please try later !');
 			}
 			
 			//output
 			$this->showOuputStr($dotype,$origin,$newstr,$replacestr);
 			
-		}else if($blockcontinuous==1){
+		}else if($this->blockcontinuous==1){
 			$dotype='CON';//连续字符串
 			$replacestr='删除连续字符';
 			$numcount=0;
@@ -134,7 +131,7 @@ Class PwdRand{
 				$numcount++;
 				
 				$numlen=rand(3,8);
-				$tmpstr=make_blockcontinuous($numlen);
+				$tmpstr=$this->make_blockcontinuous($numlen);
 				if(strpos('======================'.$origin,$tmpstr)>0){
 					$newstr='';
 				}else{
@@ -146,14 +143,12 @@ Class PwdRand{
 			}
 			if($newstr==''){
 				exit('9001 please try later !');
-			}else{
-				
+			}else{				
 				//随即位插入连续的字符
 				$numlen=rand(0,mb_strlen($origin,'utf8'));
 				$newstr=mb_substr($origin,0,$numlen).$tmpstr.mb_substr($origin,$numlen);
 				
-			}
-			
+			}			
 			//output
 			$this->showOuputStr($dotype,$origin,$newstr,$replacestr.$tmpstr);
 			
