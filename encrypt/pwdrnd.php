@@ -12,6 +12,10 @@ namespace cdetoolclient;
 	// php pwdrnd.php 222ccc3333 
 	// 或
 	// php pwdrnd.php 323223 >a.txt  
+	
+	// + 
+	// php pwdrnd.php new    表示生成并混淆
+	//
 	// 输出提示：1）原始  2）完成混淆后 带前缀  3）需要剔除的字符   4)可以在通信工具里传递的字符串【传递并告知解密方式】
 	// 输出：  self.php 232323  
 	// 232323	LOWtest3252323	删除字母  test3252323
@@ -58,6 +62,10 @@ Class PwdRand{
 	
 	public function GetPwdRnd($origin=''){
 		if(empty($origin)){exit('');}
+		if($origin=='new'){
+			//生成随机密码并 混淆			
+			$origin=$this->make_blockcontinuous(8,16);			
+		}
 		$mblen=mb_strlen($origin,'utf8');
 		if($mblen<3){exit('str is too short !');}
 		$numlen=0;
